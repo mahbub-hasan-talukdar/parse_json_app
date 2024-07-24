@@ -15,44 +15,45 @@ class _DonutListState extends ConsumerState<DonutList> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(fetchDataControllerProvider);
-    // ref.listen(fetchDataControllerProvider, (_, next) {
-    //   if (next.value?.$1 == null && next.value?.$2 == null) {
-    //     const CircularProgressIndicator();
-    //   } else if (next.value?.$1 != null && next.value?.$2 == null) {
-    //     setState(() {
-    //       list = next.value?.$1;
-    //     });
-    //   } else if (next.value?.$1 == null && next.value?.$2 != null) {
-    //     showDialog(
-    //       context: context,
-    //       builder: (BuildContext context) {
-    //         return AlertDialog(
-    //           title: const Text('Error!'),
-    //           content: Text('${next.value?.$2}'),
-    //           actions: [
-    //             TextButton(
-    //               onPressed: () {
-    //                 Navigator.of(context).pop();
-    //               },
-    //               child: const Text('OK'),
-    //             ),
-    //           ],
-    //         );
-    //       },
-    //     );
-    //   }
-    // });
-    // print(list?.first.name);
+    ref.listen(fetchDataControllerProvider, (_, next) {
+      if (next.value?.$1 == null && next.value?.$2 == null) {
+        const CircularProgressIndicator();
+      } else if (next.value?.$1 != null && next.value?.$2 == null) {
+        setState(() {
+          list = next.value?.$1;
+        });
+      } else if (next.value?.$1 == null && next.value?.$2 != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error!'),
+              content: Text('${next.value?.$2}'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
+    print(list?.first.name);
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            ListView.builder(itemBuilder: (BuildContext, index) {
-              ListTile(
-                title: Text(list?[index].name ?? 'no name'),
-                subtitle: Text(list?[index].ppu.toString() ?? 'no ppu'),
-              );
-            }),
+            Text(list?.first.name ?? 'no name'),
+            // ListView.builder(itemBuilder: (BuildContext, index) {
+            //   ListTile(
+            //     title: Text(list?[index].name ?? 'no name'),
+            //     subtitle: Text(list?[index].ppu.toString() ?? 'no ppu'),
+            //   );
+            // }),
           ],
         ),
       ),
