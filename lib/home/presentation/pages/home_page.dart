@@ -15,7 +15,6 @@ class _DonutListState extends ConsumerState<DonutList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Future(() {
       ref.read(fetchDataControllerProvider.notifier).fetchData();
@@ -25,10 +24,7 @@ class _DonutListState extends ConsumerState<DonutList> {
   @override
   Widget build(BuildContext context) {
     ref.listen(fetchDataControllerProvider, (_, next) {
-      print("${next.value?.$1} and ${next.value?.$1}");
-      if (next.value?.$1 == null && next.value?.$2 == null) {
-        const CircularProgressIndicator();
-      } else if (next.value?.$1 != null && next.value?.$2 == null) {
+      if (next.value?.$1 != null && next.value?.$2 == null) {
         setState(() {
           list = next.value?.$1;
         });
@@ -52,24 +48,27 @@ class _DonutListState extends ConsumerState<DonutList> {
         );
       }
     });
-    print(list?.length);
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // Text(list?.first.name ?? 'no name'),
-            Expanded(
-              child: ListView.builder(
-                itemCount: list?.length,
-                itemBuilder: (BuildContext, index) {
-                  return ListTile(
-                    title: Text(list?[index].name ?? 'no name'),
-                    subtitle: Text(list?[index].ppu.toString() ?? 'no ppu'),
-                  );
-                },
-              ),
-            ),
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              (list?.isEmpty == true)
+                  ? const CircularProgressIndicator()
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: list?.length,
+                        itemBuilder: (BuildContext, index) {
+                          return ListTile(
+                            title: Text(list?[index].name ?? 'no name'),
+                            subtitle:
+                                Text(list?[index].ppu.toString() ?? 'no ppu'),
+                          );
+                        },
+                      ),
+                    ),
+            ],
+          ),
         ),
       ),
     );

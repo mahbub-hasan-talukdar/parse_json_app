@@ -17,13 +17,6 @@ class DonutUseCase {
   DonutUseCase({required this.donutRepository});
 
   FutureOr<(List<DonutEntity>?, String?)> execute() async {
-    print('in use case');
-    var res;
-    try {
-      res = donutRepository.fetchDonuts();
-    } catch (e) {
-      print(e);
-    }
-    return res;
+    return await donutRepository.fetchDonuts();
   }
 }

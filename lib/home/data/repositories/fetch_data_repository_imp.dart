@@ -13,15 +13,6 @@ class DonutRepositoryImp implements DonutRepository {
 
   @override
   FutureOr<(List<DonutModel>?, String?)> fetchDonuts() async {
-    print('in repo imp');
-    final String response = await rootBundle.loadString('assets/donuts.json');
-    final data = jsonDecode(response) as List;
-    final res = data.map((json) => DonutModel.fromJson(json)).toList();
-    return (res, null);
+    return await donutLocalDataSourceDataSource.fetchDonuts();
   }
-
-  // @override
-  // FutureOr<(List<DonutModel>?, String?)> fetchDonuts() async {
-  //   return await donutLocalDataSourceDataSource.fetchDonuts();
-  // }
 }

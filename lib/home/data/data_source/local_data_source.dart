@@ -14,9 +14,15 @@ DonutLocalDataSource donutLocalDataSource(Ref ref) {
 
 class DonutLocalDataSource {
   FutureOr<(List<DonutModel>?, String?)> fetchDonuts() async {
-    final String response = await rootBundle.loadString('assets/donuts.json');
-    final data = json.decode(response) as List;
-    var res = data.map((json) => DonutModel.fromJson(json)).toList();
-    return (res, null);
+    try {
+      await Future.delayed(Duration(seconds: 2));
+      final String response = await rootBundle.loadString('assets/donuts.json');
+      final data = json.decode(response) as List;
+      var res = data.map((json) => DonutModel.fromJson(json)).toList();
+      return (res, null);
+    } catch (e) {
+      print(e);
+      return (null, e.toString());
+    }
   }
 }

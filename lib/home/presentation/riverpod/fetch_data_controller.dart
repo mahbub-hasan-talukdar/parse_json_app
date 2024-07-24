@@ -14,16 +14,10 @@ class FetchDataController extends _$FetchDataController {
 
   void fetchData() async {
     state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      print('before call');
-      var res;
-      try {
-        res = await ref.read(donutUseCaseProvider).execute();
-      } catch (e) {
-        print(e);
-      }
-      print('after call');
-      return res;
-    });
+    state = await AsyncValue.guard(
+      () async {
+        return await ref.read(donutUseCaseProvider).execute();
+      },
+    );
   }
 }
