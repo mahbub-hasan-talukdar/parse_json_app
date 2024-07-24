@@ -12,10 +12,20 @@ class DonutList extends ConsumerStatefulWidget {
 
 class _DonutListState extends ConsumerState<DonutList> {
   List<DonutEntity>? list = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future(() {
+      ref.read(fetchDataControllerProvider.notifier).fetchData();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(fetchDataControllerProvider);
     ref.listen(fetchDataControllerProvider, (_, next) {
+      print("${next.value?.$1} and ${next.value?.$1}");
       if (next.value?.$1 == null && next.value?.$2 == null) {
         const CircularProgressIndicator();
       } else if (next.value?.$1 != null && next.value?.$2 == null) {
@@ -42,41 +52,26 @@ class _DonutListState extends ConsumerState<DonutList> {
         );
       }
     });
-    print(list?.first.name);
+    print(list?.length);
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            Text(list?.first.name ?? 'no name'),
-            // ListView.builder(itemBuilder: (BuildContext, index) {
-            //   ListTile(
-            //     title: Text(list?[index].name ?? 'no name'),
-            //     subtitle: Text(list?[index].ppu.toString() ?? 'no ppu'),
-            //   );
-            // }),
+            // Text(list?.first.name ?? 'no name'),
+            Expanded(
+              child: ListView.builder(
+                itemCount: list?.length,
+                itemBuilder: (BuildContext, index) {
+                  return ListTile(
+                    title: Text(list?[index].name ?? 'no name'),
+                    subtitle: Text(list?[index].ppu.toString() ?? 'no ppu'),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-// class DonutList extends StatefulWidget {
-//   @override
-//   _DonutListState createState() => _DonutListState();
-// }
-
-// class _DonutListState extends State<DonutList> {
-//   late Future<List<DonutEntity>> _donuts;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: [
-
-//         ],
-//       ),
-//     );
-//   }
-// }
