@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:parse_json_app/home/domain/entities/fetch_data_entity.dart';
-import 'package:parse_json_app/home/domain/repositories/fetch_data_repository.dart';
+import 'package:parse_json_app/home/domain/entities/donut_list_entity.dart';
+import 'package:parse_json_app/home/domain/repositories/donut_list_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'fetch_data_use_case.g.dart';
+part 'donut_list_use_case.g.dart';
 
 @riverpod
 DonutUseCase donutUseCase(Ref ref) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:parse_json_app/home/domain/entities/fetch_data_entity.dart';
-import 'package:parse_json_app/home/domain/use_cases/fetch_data_use_case.dart';
-import 'package:parse_json_app/home/presentation/riverpod/fetch_data_controller.dart';
+import 'package:parse_json_app/home/domain/entities/donut_list_entity.dart';
+import 'package:parse_json_app/home/domain/use_cases/donut_list_use_case.dart';
+import 'package:parse_json_app/home/presentation/riverpod/donut_list_controller.dart';
 
 class DonutList extends ConsumerStatefulWidget {
   const DonutList({super.key});

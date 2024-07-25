@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:parse_json_app/home/data/models/fetch_data_model.dart';
+import 'package:parse_json_app/home/data/models/donut_list_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'local_data_source.g.dart';

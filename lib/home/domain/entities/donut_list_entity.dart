@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:parse_json_app/home/domain/entities/batter_entity.dart';
+import 'package:parse_json_app/home/domain/entities/topping_entity.dart';
 
 class DonutEntity {
   final String id;
@@ -15,25 +17,5 @@ class DonutEntity {
     required this.ppu,
     required this.batters,
     required this.toppings,
-  });
-}
-
-class Batter {
-  final String id;
-  final String type;
-
-  Batter({
-    required this.id,
-    required this.type,
-  });
-}
-
-class Topping {
-  final String id;
-  final String type;
-
-  Topping({
-    required this.id,
-    required this.type,
   });
 }
